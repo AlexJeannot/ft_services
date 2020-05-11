@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+    name: ftps-deployment
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            component: ftps
+    template:
+        metadata:
+            labels:
+                component: ftps
+        spec:
+            containers:
+            -   image: ftps-image
+                name: ftps-container
+                imagePullPolicy: Never
+                ports:
+                -   containerPort: 21
+                    name: ftps-port
+                -   containerPort: 21000
+                    name: ftps-data
+                volumeMounts:
+                -   name: ftps-storage
+                    mountPath: /etc/vsftpd/alex
+            volumes:
+            -   name: ftps-storage
+                persistentVolumeClaim:
+                    claimName: ftps-persistent-volume-claim

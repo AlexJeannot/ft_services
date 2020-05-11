@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: ftps-nodeport
+spec:
+    type: NodePort
+    selector:
+        component: ftps
+    ports:
+    -   port: 21
+        targetPort: 21
+        nodePort: 21
+        protocol: TCP
+        name: ftps-port
+    -   port: 21000
+        targetPort: 21000
+        nodePort: 21000
+        protocol: TCP
+        name: ftps-data

@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+    name: ingress-service
+    annotations:
+        nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+    rules:
+    -   http:
+            paths:
+            -   path: /
+                backend:
+                    serviceName: nginx-cluster-ip
+                    servicePort: 80
