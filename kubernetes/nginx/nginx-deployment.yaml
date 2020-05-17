@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+    name: nginx-deployment
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            component: nginx
+    template:
+        metadata:
+            labels:
+                component: nginx
+        spec:
+            restartPolicy: Always
+            containers:
+            -   image: nginx-image
+                name: nginx-container
+                imagePullPolicy: Never
+                ports:
+                -   containerPort: 22
+                -   containerPort: 80
+                -   containerPort: 443
+            

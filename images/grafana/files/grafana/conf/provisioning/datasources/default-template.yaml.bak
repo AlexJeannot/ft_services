@@ -1,0 +1,12 @@
+apiVersion: 1
+
+datasources:
+-   name: InfluxDB
+    type: influxdb
+    orgId: 1
+    url: http://minikubeip:8086
+    access: proxy
+    password: telegraf_password
+    user: telegraf
+    database: telegraf
+    isDefault: true
